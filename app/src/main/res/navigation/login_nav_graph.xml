@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <activity
+        android:id="@+id/main_activity"
+        android:name="com.rushil.navigationexample.ui.activities.MainActivity"
+        android:label="Main Activity"
+        tools:layout="@layout/activity_main" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.rushil.navigationexample.ui.fragments.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login"
+
+        >
+        <action
+            android:id="@+id/loginFragment_to_main_activity"
+            app:destination="@id/main_activity"
+
+            />
+    </fragment>
+
+</navigation>
