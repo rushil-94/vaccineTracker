@@ -13,10 +13,13 @@ import com.rushil.navigationexample.data.db.dao.FindCityByPinDao
 import com.rushil.navigationexample.misc.RandomString
 import com.rushil.navigationexample.misc.encodeStringSHA256
 import com.rushil.navigationexample.repostories.NetWorkRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import javax.inject.Inject
 
-class LoginViewModel(
+@HiltViewModel
+class LoginViewModel @Inject constructor(
     private val repository: NetWorkRepository,
     application: Application
 ) :

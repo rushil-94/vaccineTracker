@@ -6,14 +6,16 @@ import androidx.lifecycle.ViewModelProvider
 import com.rushil.navigationexample.data.ApiService
 import com.rushil.navigationexample.misc.Utility
 import com.rushil.navigationexample.repostories.NetWorkRepository
+import dagger.hilt.android.scopes.ActivityScoped
+import javax.inject.Inject
 
-class LoginViewModelFactory(private val application: Application) :
+@ActivityScoped
+class LoginViewModelFactory @Inject constructor(
+    private val netWorkRepository: NetWorkRepository,
+    private val application: Application
+) :
     ViewModelProvider.AndroidViewModelFactory(application) {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return LoginViewModel(
-            NetWorkRepository(
-                Utility.getRetrofit().create(ApiService::class.java)
-            ), application = application
-        ) as T
+        return LoginViewModel(netWorkRepository, application = application) as T
     }
 }

@@ -35,5 +35,9 @@ object Utility {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
 
+    fun log(msg: String) {
+        Log.e("TAG", msg)
+    }
+
 
 }

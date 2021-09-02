@@ -10,14 +10,27 @@ import androidx.navigation.ui.setupWithNavController
 import com.rushil.navigationexample.R
 import com.rushil.navigationexample.databinding.ActivityMainBinding
 import com.rushil.navigationexample.misc.CustomApplication
+import com.rushil.navigationexample.misc.Utility
 import com.rushil.navigationexample.viewmodels.MainViewModel
 import com.rushil.navigationexample.viewmodels.MainViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var navHostFragment: NavHostFragment
     private lateinit var navController: NavController
-    private lateinit var mainViewModel: MainViewModel
+
     private lateinit var activityMainBinding: ActivityMainBinding
+
+//    @Inject
+//    lateinit var mainViewModelFactory: MainViewModelFactory
+//
+//    @Inject
+//    lateinit var _mainViewModelFactory: MainViewModelFactory
+
+    private lateinit var mainViewModel: MainViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityMainBinding =
@@ -30,17 +43,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun init() {
 
-        mainViewModel = ViewModelProvider(
-            this@MainActivity,
-            MainViewModelFactory(application = application as CustomApplication)
-        ).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this@MainActivity).get(MainViewModel::class.java)
 
         navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
         activityMainBinding.bnv.setupWithNavController(navController)
-    }
 
+//        Utility.log("${mainViewModelFactory}  $_mainViewModelFactory")
+    }
 
 }
